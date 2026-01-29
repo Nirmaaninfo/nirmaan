@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Categories in {{ selected_location.area }}, {{ selected_location.city }}
+{% endblock %}
+
+{% block content %}
+
+<h2 class="page-title">
+    Categories in {{ selected_location.area }}, {{ selected_location.city }}
+</h2>
+
+<div class="category-grid">
+
+    {% for category in categories %}
+        <a
+            href="{% url 'category_detail' category.slug %}?location={{ selected_location.id }}"
+            class="category-tile"
+            {% if category.image %}
+                style="background-image: url('{{ category.image.url }}');"
+            {% endif %}
+        >
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+                <h3>{{ category.name|upper }}</h3>
+                {% if category.description %}
+                    <p>{{ category.description }}</p>
+                {% endif %}
+            </div>
+        </a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

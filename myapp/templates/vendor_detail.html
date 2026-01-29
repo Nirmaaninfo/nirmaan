@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ vendor.org_name }} | Nirmaan
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ vendor.org_name }}</h1>
+
+<p>
+    <strong>Category:</strong> {{ vendor.category.name }}
+</p>
+
+<p>
+    <strong>Location:</strong>
+    {{ vendor.location.area }}, {{ vendor.location.city }}
+</p>
+
+<hr>
+
+<h3>Services</h3>
+<p>{{ vendor.services }}</p>
+
+{% if vendor.materials %}
+    <h3>Materials</h3>
+    <p>{{ vendor.materials }}</p>
+{% endif %}
+
+<hr>
+
+<h3>Contact</h3>
+<p>📞 {{ vendor.contact_no }}</p>
+
+{% if vendor.email %}
+    <p>✉️ {{ vendor.email }}</p>
+{% endif %}
+
+{% if vendor.website %}
+    <p>
+        🌐 <a href="{{ vendor.website }}" target="_blank">
+            Visit Website
+        </a>
+    </p>
+{% endif %}
+
+{% if vendor.google_maps_link %}
+    <p>
+        📍 <a href="{{ vendor.google_maps_link }}" target="_blank">
+            View on Google Maps
+        </a>
+    </p>
+{% endif %}
+
+{% if vendor.google_rating %}
+    <p>⭐ Rating: {{ vendor.google_rating }}</p>
+{% endif %}
+
+{% endblock %}

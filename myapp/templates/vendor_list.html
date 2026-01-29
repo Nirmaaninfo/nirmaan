@@ -1,0 +1,15 @@
+<h2>
+  {{ subcategory.name }} in {{ location.area }}
+</h2>
+
+{% for vendor in vendors %}
+  <div class="vendor-card">
+    <h3>
+      <a href="{% url 'vendor_detail' vendor.slug %}">
+        {{ vendor.org_name }}
+      </a>
+    </h3>
+    <p>{{ vendor.services }}</p>
+    <p>📞 {{ vendor.contact_no }}</p>
+  </div>
+{% endfor %}

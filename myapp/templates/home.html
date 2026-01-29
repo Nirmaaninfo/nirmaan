@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Nirmaan – Find Construction Vendors{% endblock %}
+
+{% block content %}
+<div class="hero-wrapper">
+
+    <!-- Logo -->
+    <img
+        src="{% static 'images/logo.png' %}"
+        alt="Nirmaan Logo"
+        class="logo"
+    >
+<form class="search-bar" method="get" action="{% url 'category_by_location' %}">>
+
+<div class="dropdown">
+    <input
+        type="text"
+        placeholder="Select location"
+        class="dropdown-input"
+        onclick="toggleDropdown(this)"
+        onkeyup="filterOptions(this)"
+        readonly
+    >
+
+    <ul class="dropdown-list">
+        {% for location in locations %}
+            <li onclick="selectOption(this, '{{ location.id }}', 'location')">
+                {{ location.area }}, {{ location.city }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <input type="hidden" name="location" id="location">
+</div>
+
+
+    <button type="submit">Search</button>
+</form>
+
+
+</div>
+
+{% endblock %}

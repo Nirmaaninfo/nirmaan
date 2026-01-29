@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ category.name }} in {{ location.area }}, {{location.city }}
+{% endblock %}
+
+{% block content %}
+
+<h2 class="page-title">
+    {{ category.name }} in {{ location.area }}, {{location.city }}
+</h2>
+
+<div class="category-grid">
+
+    {% for sub in subcategories %}
+        <a
+            href="{% url 'vendor_list' %}?subcategory={{ sub.slug }}&location={{ location.id }}"
+            class="category-tile"
+        >
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+                <h3>{{ sub.name|upper }}</h3>
+                <p>View vendors</p>
+            </div>
+        </a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

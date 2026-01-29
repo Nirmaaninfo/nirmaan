@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+{% block content %}{% endblock %}
+<script>
+function toggleDropdown(input) {
+    const list = input.nextElementSibling;
+    list.style.display = list.style.display === "block" ? "none" : "block";
+    input.removeAttribute("readonly");
+}
+
+function filterOptions(input) {
+    const filter = input.value.toLowerCase();
+    const items = input.nextElementSibling.querySelectorAll("li");
+
+    items.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(filter)
+            ? "block"
+            : "none";
+    });
+}
+
+function selectOption(item, value, field) {
+    const dropdown = item.closest(".dropdown");
+    dropdown.querySelector(".dropdown-input").value = item.textContent;
+    dropdown.querySelector(".dropdown-list").style.display = "none";
+    document.getElementById(field).value = value;
+}
+</script>
+
+</body>
+</html>
